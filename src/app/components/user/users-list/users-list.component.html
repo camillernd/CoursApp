@@ -1,0 +1,65 @@
+<div class="description">
+  <!-- Texte en italique pour l'instruction -->
+  <p><i>Click on a user's first name to highlight it, or click on the last name to make it bold and italicized.</i></p>
+</div>
+
+<!-- Tableau Angular Material avec la directive mat-table et les données liées au usersDataSource -->
+<table mat-table [dataSource]="usersDataSource" class="mat-elevation-z8">
+
+  <!-- Définition de la colonne ID -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> ID </th> <!-- En-tête de la colonne -->
+    <td mat-cell *matCellDef="let user"> {{user.id}} </td> <!-- Cellule affichant l'ID de l'utilisateur -->
+  </ng-container>
+
+  <!-- Définition de la colonne First Name -->
+  <ng-container matColumnDef="firstname">
+    <th mat-header-cell *matHeaderCellDef> First Name </th> <!-- En-tête de la colonne -->
+    <td mat-cell *matCellDef="let user">
+      <!-- Le prénom est cliquable pour activer le surlignage et changer la couleur -->
+      <span [ngClass]="{'highlight': isHighlighted[user.id]}" 
+            [ngStyle]="{'color': textColor[user.id]}"
+            (click)="toggleStyle(user.id)">
+        {{ user.firstname }}
+      </span>
+    </td> <!-- Cellule affichant le prénom avec possibilité de surlignage -->
+  </ng-container>
+
+  <!-- Définition de la colonne Name (nom de famille) -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th> <!-- En-tête de la colonne -->
+    <td mat-cell *matCellDef="let user">
+      <!-- Le nom est cliquable pour activer/désactiver le style gras et italique -->
+      <span [ngClass]="{'bold': isBold[user.id]}" 
+            [ngStyle]="{'font-style': fontStyle[user.id]}"
+            (click)="toggleClass(user.id)">
+        {{ user.name }}
+      </span>
+    </td> <!-- Cellule affichant le nom avec possibilité de changer le style (gras et italique) -->
+  </ng-container>
+
+  <!-- Définition de la colonne Role -->
+  <ng-container matColumnDef="role">
+    <th mat-header-cell *matHeaderCellDef> Role </th> <!-- En-tête de la colonne -->
+    <td mat-cell *matCellDef="let user"> {{user.role}} </td> <!-- Cellule affichant le rôle de l'utilisateur -->
+  </ng-container>
+
+  <!-- Définition de la colonne Email -->
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef> Email </th> <!-- En-tête de la colonne -->
+    <td mat-cell *matCellDef="let user"> {{user.email}} </td> <!-- Cellule affichant l'email de l'utilisateur -->
+  </ng-container>
+
+  <!-- Définition de la colonne Telephone -->
+  <ng-container matColumnDef="tel">
+    <th mat-header-cell *matHeaderCellDef> Telephone </th> <!-- En-tête de la colonne -->
+    <td mat-cell *matCellDef="let user"> {{user.tel}} </td> <!-- Cellule affichant le numéro de téléphone de l'utilisateur -->
+  </ng-container>
+
+  <!-- Ligne d'en-tête du tableau avec les colonnes définies dans displayedColumns -->
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+  <!-- Ligne de données du tableau avec les colonnes définies dans displayedColumns -->
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>

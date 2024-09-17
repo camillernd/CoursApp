@@ -1,0 +1,39 @@
+.message-card {
+    margin: 20px;
+    padding: 20px;
+  }
+  
+  .message-item-card {
+    margin-bottom: 10px;
+    background-color: #282729; /* Light background color for message cards */
+    padding: 10px;
+  }
+  
+  .message-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .delete-button {
+    background-color: #A6A6EC; /* Red color for the delete button */
+    color: white;
+  }
+  
+  .clear-button {
+    margin-top: 20px;
+  }
+  
+  .description {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    font-size: 1.2rem;
+    color: #ffffff;
+  }
+  
+  .mat-elevation-z8 {
+    margin-top: 20px;
+  }
+  

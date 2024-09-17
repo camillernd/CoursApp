@@ -1,0 +1,24 @@
+<!-- Affiche la carte de message uniquement si la liste des messages n'est pas vide -->
+<mat-card *ngIf="messageService.getMessages().length" class="message-card">
+    
+  <!-- Contenu de la carte -->
+  <mat-card-content>
+    <!-- Boucle à travers tous les messages pour les afficher dans des cartes individuelles -->
+    <mat-card *ngFor="let message of messageService.getMessages(); let i = index" class="message-item-card">
+      
+      <!-- Contenu du message -->
+      <mat-card-content class="message-content">
+        <!-- Affichage du texte du message -->
+        <span>{{ message }}</span>
+        
+        <!-- Bouton pour supprimer un message spécifique -->
+        <button mat-fab aria-label="Delete" class="delete-button" (click)="deleteMessage(i)">
+          <mat-icon>delete</mat-icon> <!-- Icone de suppression -->
+        </button>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Bouton pour effacer tous les messages -->
+    <button mat-raised-button color="primary" (click)="clearMessages()" class="clear-button">Clear All</button>
+  </mat-card-content>
+</mat-card>
